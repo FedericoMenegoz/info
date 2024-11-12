@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Added by me
+.DS_STORE
+tail*
+style/input.css
+
 # User-specific files
 *.rsuser
 *.suo
