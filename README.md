@@ -1,1 +1,1 @@
-# cheesy-info
+# info
