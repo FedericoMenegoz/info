@@ -1,0 +1,28 @@
+{
+  "name": "federicomenegozpages",
+  "version": "1.0.0",
+  "description": "Personal Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FedericoMenegoz/info.git"
+  },
+  "keywords": [
+    "Portfolio"
+  ],
+  "author": "Federico Menegoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FedericoMenegoz/info/issues"
+  },
+  "homepage": "https://github.com/FedericoMenegoz/info#readme",
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}
