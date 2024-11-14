@@ -13,12 +13,12 @@
       <!-- Fixed light/dark mode  -->
       <div class="fixed flex justify-end gap-5 w-full pr-6 text-text-primary">
         <div
-          class="w-max flex text-sm gap-2 dark:text-white h-max items-center"
+          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
         >
-          <span>DARK</span>
-          <button id="dark-button" onclick="toogleLightMode(this)">
+          <span class="text-transition">DARK</span>
+          <button id="dark-button" onclick="toogleLightMode(this, 'dark')">
             <svg
-              class="fill-text-primary"
+              class="icon-selected"
               xmlns="http://www.w3.org/2000/svg"
               width="12"
               height="12"
@@ -33,12 +33,12 @@
           </button>
         </div>
         <div
-          class="w-max flex text-sm gap-2 dark:text-white h-max items-center"
+          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
         >
-          <span>LIGHT</span>
-          <button id="light-button" onclick="toogleLightMode(this)">
+          <span class="text-transition">LIGHT</span>
+          <button id="light-button" onclick="toogleLightMode(this, 'light')">
             <svg
-              class="fill-background"
+              class="icon-not-selected"
               xmlns="http://www.w3.org/2000/svg"
               width="12"
               height="12"
@@ -55,7 +55,7 @@
         </div>
       </div>
       <!-- Content -->
-      <div class="w-full h-dvh dark:bg-background p-6">
+      <div class="w-full h-dvh bg-background p-6">
         <div
           class="w-full h-full border-2 border-border bg-background text-2xl flex flex-col items-start gap-2 p-2"
         >
@@ -71,26 +71,18 @@
   </body>
   <script>
 
-    function toogleLightMode(button) {
-      const selectedButton = button.id
-      const otherButton =
-        button.id === "dark-button" ? "light-button" : "dark-button"
+    function toogleLightMode(button, mode) {
+      const selectedIcon = button.querySelector('svg')
+      const oldMode = mode === 'light' ? 'dark' : 'light'
+      const otherIcon = document.querySelector(`#${oldMode}-button > svg`)
 
-      const selectedSvg = button.querySelector(`#${selectedButton} > svg`)
-      const otherSvg = document.querySelector(`#${otherButton} > svg`)
+      selectedIcon.classList.remove('icon-not-selected')
+      selectedIcon.classList.add('icon-selected')
+      otherIcon.classList.remove('icon-selected')
+      otherIcon.classList.add('icon-not-selected')
 
-      if (selectedButton === "dark-button") {
-        document.body.classList.add("dark")
-        document.body.classList.remove("light")
-      } else {
-        document.body.classList.remove("dark")
-        document.body.classList.add("light")
-      }
-
-      selectedSvg.classList.add("fill-text-primary")
-      selectedSvg.classList.remove("fill-background")
-      otherSvg.classList.add("fill-background")
-      otherSvg.classList.remove("fill-text-primary")
+      document.body.classList.add(mode)
+      document.body.classList.remove(oldMode)
     }
   </script>
 </html>
