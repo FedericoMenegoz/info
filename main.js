@@ -14,7 +14,7 @@ directionalLight.position.set(5, 5, 5).normalize();
 scene.add(directionalLight);
 
 const camera = new THREE.PerspectiveCamera( 100, container.clientWidth / container.clientHeight )
-camera.position.set(1, 1, 100)
+camera.position.set(1, 1, 50)
 camera.lookAt( scene.position )
 
 const renderer = new THREE.WebGLRenderer()
@@ -26,7 +26,7 @@ renderer.setAnimationLoop( animate )
 renderer.domElement.style.position = 'absolute';
 renderer.domElement.style.top = '0';
 renderer.domElement.style.left = '0';
-renderer.domElement.style.zIndex = '10'; // Ensure it’s between background and content
+renderer.domElement.style.zIndex = '0'; // Ensure it’s between background and content
 container.appendChild( renderer.domElement )
 
 // Load HDR Environment Map
@@ -36,7 +36,7 @@ rgbeLoader.load('./assets/cannon_1k.hdr', function (texture) {
   scene.environment = texture; // Use as environment for reflections
 })
 
-const geometry = new THREE.BoxGeometry( 80, 80, 80)
+const geometry = new THREE.BoxGeometry( 60, 10, 10)
 const material = new THREE.MeshStandardMaterial( { 
     color: 0x111111,
 
