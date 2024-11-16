@@ -39,7 +39,7 @@ rgbeLoader.load('./assets/cannon_1k.hdr', function (texture) {
 const geometry = new THREE.BoxGeometry(30, 30, 30)
 const material = new THREE.MeshStandardMaterial({
   color: 0xAAAAAA,
-  opacity: 0.2,
+  opacity: 0.3,
   transparent: true,
 
   roughness: 0.3,
@@ -84,7 +84,7 @@ function animate() {
   cube.rotation.z += 0.0005
   cube.rotation.y += 0.0001
   cube.rotation.x += 0.001
-  cube.material.metalness = Math.sin(index)
+  cube.material.metalness = 1 + Math.sin(index)*0.5
   // cube.material.roughness = Math.sin(index) 
   index += 0.0025
 
