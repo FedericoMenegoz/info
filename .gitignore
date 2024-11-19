@@ -7,6 +7,7 @@
 .DS_STORE
 tail*
 style/input.css
+.editorconfig
 
 # User-specific files
 *.rsuser
