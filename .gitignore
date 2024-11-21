@@ -1,6 +1,10 @@
 # Mac os 
 .DS_STORE
 
+# My own trip
+old
+todo.md
+
 # Tailwind
 tail*
 style/input.css
