@@ -7,11 +7,7 @@ import { createPlane } from './components/plane.js'
 import { createRenderer } from './systems/renderer.js'
 import { Resizer } from './systems/Resizer.js'
 import { Loop } from './systems/Loop.js'
-import { createEffectCompose } from './components/effectCompose.js'
 
-
-// These variables are module-scoped: we cannot access them
-// from outside the module
 let camera
 let renderer
 let scene
@@ -25,13 +21,13 @@ class Background {
     container.append(renderer.domElement)
 
     loop = new Loop(camera, scene, renderer)
-    const insideCube = createCube(false)
-    const outsideCube = createCube(true)
+    const insideCube = createCube()
+    insideCube.rotation.z += 1 
     const light = createLights()
-    scene.add(insideCube, outsideCube, light)
-    loop.updatables.push(insideCube, outsideCube)
+    scene.add(insideCube, light)
+    // loop.updatables.push(insideCube, outsideCube)
 
-    const resizer = new Resizer(container, camera, renderer, insideCube, outsideCube)
+    const resizer = new Resizer(container, camera, renderer, insideCube)
   }
 
   start() {

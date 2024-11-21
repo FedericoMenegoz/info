@@ -8,12 +8,9 @@ import { MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
 //   return alphaTexture
 // }
 
-function createMaterial(outside) {
+function createMaterial() {
   //const texture = getAlphaTExture()
   let color = 0x0000FF
-  if (!outside) {
-    color = 0x222222
-  }
 
   const material = new MeshStandardMaterial({
     color: color,
@@ -21,9 +18,7 @@ function createMaterial(outside) {
     transparent: true,
     roughness: 0.3,
     metalness: 1,
-    envMapIntensity: 0.9,
-    clipIntersection: outside,
-    wireframe: !outside
+    envMapIntensity: 0.9
   });
 
 
