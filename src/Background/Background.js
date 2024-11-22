@@ -21,13 +21,14 @@ class Background {
     container.append(renderer.domElement)
 
     loop = new Loop(camera, scene, renderer)
-    const insideCube = createCube()
-    insideCube.rotation.z += 1 
-    const light = createLights()
-    scene.add(insideCube, light)
-    // loop.updatables.push(insideCube, outsideCube)
+    const cube = createCube(camera, renderer)
 
-    const resizer = new Resizer(container, camera, renderer, insideCube)
+    const light = createLights()
+    scene.add(cube, light)
+    loop.updatables.push(cube)
+
+    const resizer = new Resizer(container, camera, renderer, cube)
+    
   }
 
   start() {
@@ -45,3 +46,8 @@ class Background {
 }
 
 export { Background }
+
+const rotate = (cube) => {
+  console.log("rotating")
+  cube.rotation.y += Math.PI
+}

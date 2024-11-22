@@ -18,6 +18,13 @@
         <div
           class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
         >
+          <button id="rotate-box">
+            Rotate
+          </button>
+        </div>
+        <div
+          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
+        >
           <span class="text-transition">DARK</span>
           <button id="dark-button" onclick="toogleLightMode(this, 'dark')">
             <svg
@@ -59,6 +66,7 @@
       <!-- Content -->
       <div id="content" class="w-full h-dvh bg-background px-6 py-8 z-0">
         <div
+          id="content-div"
           class="relative z-50 w-full h-full border-2 border-border text-2xl flex flex-col items-start gap-2 p-2"
         >
           <h1 class="text-text-primary text-2xl text-tomorrow">

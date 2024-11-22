@@ -713,6 +713,11 @@ video {
   opacity: 1;
 }
 
+body {
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
 /* Fonts */
 
 .text-allerta {
@@ -780,4 +785,14 @@ body *{
   /* Sets vertical writing mode */
   text-orientation: mixed;
   /* Ensures characters remain upright */
+}
+
+.content {
+  transform-style: preserve-3d;
+}
+
+.content-div {
+  transform-style: preserve-3d;
+  position: absolute;
+  z-index: 50;
 }
