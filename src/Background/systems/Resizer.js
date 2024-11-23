@@ -1,20 +1,19 @@
 import { Plane, Vector3 } from 'three'
-import { map, visibleHeightAtZDepth, visibleWidthAtZDepth } from '../util/utils'
 
 class Resizer {
-  constructor(container, camera, renderer, cube) {
+  constructor(container, camera, renderer, css3dRenderer) {
     // set the initial size
-    setSize(container, camera, renderer)
-    setCubeSize(container, camera, cube)
+    setSize(container, camera, renderer, css3dRenderer)
+    //setCubeSize(container, camera, cube)
 
     window.addEventListener('resize', () => {
-      setSize(container, camera, renderer)
-      setCubeSize(container, camera, cube)
+      setSize(container, camera, renderer, css3dRenderer)
+      //setCubeSize(container, camera, cube)
     })
   }
 }
 
-const setSize = (container, camera, renderer) => {
+const setSize = (container, camera, renderer, css3dRenderer) => {
   const CONTAINER_WIDTH = container.clientWidth
   const CONTAINER_HEIGHT = container.clientHeight
   renderer.setSize(CONTAINER_WIDTH, CONTAINER_HEIGHT)
@@ -28,6 +27,7 @@ const setSize = (container, camera, renderer) => {
   // for PerspectiveCamera
   camera.aspect = aspect
   camera.updateProjectionMatrix()
+  css3dRenderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(window.devicePixelRatio)
 }
 
@@ -60,8 +60,11 @@ const setCubeSize = (container, camera, cube) => {
   console.log(scaleX, scaleY)
   cube.scale.set(scaleX, scaleY, scaleX)
   // Put the cube inside the borders of the content div
+  console.log(cube.position.z)
   cube.position.z -= actualWitdh / 2
+  console.log(cube.position.z)
 
+  cube.material.clippingPlanes = [new Plane(new Vector3(0,0,1), -cube.position.z)]
 
 
 }

@@ -578,12 +578,12 @@ video {
   z-index: 0;
 }
 
-.z-20{
-  z-index: 20;
-}
-
 .z-30{
   z-index: 30;
+}
+
+.z-40{
+  z-index: 40;
 }
 
 .z-50{
@@ -714,7 +714,7 @@ video {
 }
 
 body {
-  perspective: 800px;
+  perspective: 1000px;
   transform-style: preserve-3d;
 }
 
@@ -785,14 +785,4 @@ body *{
   /* Sets vertical writing mode */
   text-orientation: mixed;
   /* Ensures characters remain upright */
-}
-
-.content {
-  transform-style: preserve-3d;
-}
-
-.content-div {
-  transform-style: preserve-3d;
-  position: absolute;
-  z-index: 50;
 }

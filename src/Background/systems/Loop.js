@@ -5,10 +5,12 @@ const clock = new Clock()
 
 
 class Loop {
-  constructor(camera, scene, renderer) {
+  constructor(camera, scene, renderer, css3dRenderer, orbitControls) {
     this.camera = camera
     this.scene = scene
     this.renderer = renderer
+    this.css3dRenderer = css3dRenderer
+    this.orbitControls = orbitControls
     this.updatables = []
   }
 
@@ -16,6 +18,7 @@ class Loop {
     this.renderer.setAnimationLoop(() => {
       this.tick()
       this.renderer.render(this.scene, this.camera)
+      this.css3dRenderer.render(this.scene, this.camera)
     })
   }
 

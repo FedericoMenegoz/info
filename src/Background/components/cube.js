@@ -7,11 +7,10 @@ import {
 } from 'three'
 import { createMaterial } from './material'
 
-function createCube(camera, renderer) {
-  const geometry = new BoxGeometry(100, 100, 100)
+function createCube() {
+  const geometry = new BoxGeometry(10, 10, 10)
   const material = createMaterial()
   const cube = new Mesh(geometry, material)
-  const contentDiv = document.getElementById('content-div')
 
   // Rotation setup
   const startQuaternion = cube.quaternion.clone() // Initial orientation
@@ -36,24 +35,11 @@ function createCube(camera, renderer) {
         cube.quaternion.slerp(startQuaternion, progress)
       }
 
-      // Get the position of the cube's center in world coordinates
-      const worldPosition = new Vector3()
-      cube.getWorldPosition(worldPosition)
-      console.log(worldPosition)
-
-      // Project the world position into normalized device coordinates (NDC)
-      camera.updateMatrixWorld()
-      const screenPosition = worldPosition.clone().project(camera)
-
-      // Map the NDC (-1 to 1) to screen space (pixels)
-      const widthHalf = renderer.domElement.clientWidth / 2
-      const x = screenPosition.x * widthHalf + widthHalf
-
       // Calculate the cube's rotation for CSS transformation
       const rotationY = MathUtils.radToDeg(cube.rotation.y)
 
       // Apply the computed position and rotation to the contentDiv
-      contentDiv.style.transform = `translate3d(${x}px, 0, ${y}px) rotateY(${rotationY}deg)`
+      contentDiv.style.transform = `translate3d(0, 0, 50px) rotateY(${rotationY}deg)`
 
       previousQuaternion = cube.quaternion.clone()
     }

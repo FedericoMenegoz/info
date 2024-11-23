@@ -3,12 +3,13 @@
 import { PerspectiveCamera } from 'three'
 
 function createCamera() {
-  const PERSPECTIVE = 600
-  const fov = 180 * ( 2 * Math.atan( innerHeight / 2 / PERSPECTIVE ) ) / Math.PI
-  const camera = new PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 1000)
+  //const PERSPECTIVE = 600
+  //const fov = 180 * ( 2 * Math.atan( innerHeight / 2 / PERSPECTIVE ) ) / Math.PI
+  
+  const camera = new PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000)
 
-  camera.position.set( 0, 0, PERSPECTIVE );
-  document.body.style.perspective = `${PERSPECTIVE}px`
+  camera.position.set( 0, 0, 800 );
+  //document.body.style.perspective = `${PERSPECTIVE}px`
   return camera;
 }
 
