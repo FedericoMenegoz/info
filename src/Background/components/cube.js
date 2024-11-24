@@ -6,11 +6,15 @@ import {
   MathUtils
 } from 'three'
 import { createMaterial } from './material'
+import { createInfo } from '../domElements/info'
 
 function createCube() {
   const geometry = new BoxGeometry(10, 10, 10)
   const material = createMaterial()
   const cube = new Mesh(geometry, material)
+  const contentDiv = createInfo()
+
+  cube.add(contentDiv)
 
   // Rotation setup
   const startQuaternion = cube.quaternion.clone() // Initial orientation
@@ -37,9 +41,6 @@ function createCube() {
 
       // Calculate the cube's rotation for CSS transformation
       const rotationY = MathUtils.radToDeg(cube.rotation.y)
-
-      // Apply the computed position and rotation to the contentDiv
-      contentDiv.style.transform = `translate3d(0, 0, 50px) rotateY(${rotationY}deg)`
 
       previousQuaternion = cube.quaternion.clone()
     }

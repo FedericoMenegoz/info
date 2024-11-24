@@ -714,75 +714,19 @@ video {
 }
 
 body {
-  perspective: 1000px;
-  transform-style: preserve-3d;
+  margin: 0;
+  overflow: hidden;
 }
 
-/* Fonts */
-
-.text-allerta {
-  font-family: "Allera Stencil", sans-serif;
+#container {
+  width: 100vw;
+  height: 100vh;
 }
 
-.text-tomorrow {
-  font-family: "Tomorrow", sans-serif;
-}
-
-/* Colors check out https://www.youtube.com/watch?v=vIBKSmWAdIA*/
-
-.light {
-  --text-primary: 34, 34, 34;
-  --text-secondary: 85, 85, 85;
-  --border: 34, 34, 34;
-  --background: 238, 238, 238;
-}
-
-.dark {
-  --text-primary: 238, 238, 238;
-  --text-secondary:  170, 170, 170;
-  --border: 238, 238, 238;
-  --background: 34, 34, 34;
-}
-
-/* Squares to toogle light mode*/
-
-.icon-selected {
-  fill: rgba(var(--text-primary));
-  stroke: rgba(var(--text-primary));
-  transition: fill;
-}
-
-.icon-not-selected {
-  fill: rgba(var(--background));
-  stroke: rgba(var(--text-primary));
-  transition: fill;
-}
-
-/* This is needed as otherwise it transition differently*/
-
-.text-transition {
-  color: var(--text-primary);
-  transition: color;
-}
-
-body *{
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-/* Util */
-
-.invert-color {
+.css3d-object {
   color: white;
-  mix-blend-mode: difference;
-}
-
-.vertical-text {
-  transform: rotate(180deg);
-  /* Rotates the text upside down */
-  writing-mode: vertical-lr;
-  /* Sets vertical writing mode */
-  text-orientation: mixed;
-  /* Ensures characters remain upright */
+  background-color: rgba(255, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
 }

@@ -7,9 +7,8 @@ import { createLights } from './components/lights.js'
 import { createRenderer } from './systems/renderer.js'
 import { Resizer } from './systems/Resizer.js'
 import { Loop } from './systems/Loop.js'
-import { createCSS3DRender } from './components/css3drenderer.js'
+import { createCSS3DRender } from './systems/css3drenderer.js'
 import { createOrbitControl } from './systems/orbitControl.js'
-import { createInfo } from './domElements/info.js'
 
 import { AxesHelper } from 'three'
 
@@ -34,17 +33,14 @@ class Background {
     const cube = createCube(camera, renderer)
 
     const light = createLights()
-    const content = createInfo()
+
     // Axes
     const axesHelper = new AxesHelper( 20 )
-    
-    scene.add(cube, light, content, axesHelper)
-    console.log(content.position)
-    console.log(content.matrix)
-    console.log(content.matrixWorld)
+
+    scene.add(cube, light, axesHelper)
     loop.updatables.push(cube)
 
-    const resizer = new Resizer(container, camera, renderer, infoRenderer)
+    const resizer = new Resizer(container, camera, renderer, infoRenderer, cube)
     
   }
 

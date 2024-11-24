@@ -14,7 +14,7 @@ function createMaterial() {
 
   const material = new MeshStandardMaterial({
     color: color,
-    opacity: 0.2,
+    opacity: 0.1,
     transparent: true,
     roughness: 0.3,
     metalness: 1,

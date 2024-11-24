@@ -5,7 +5,7 @@ function createCSS3DRender() {
   infoRenderer.setSize(window.innerWidth, window.innerHeight)
 
   infoRenderer.domElement.style.position = 'absolute'
-  infoRenderer.domElement.style.top = '0px'
+  infoRenderer.domElement.style.top = 0
   infoRenderer.domElement.style.pointerEvents = 'none'
   document.body.appendChild(infoRenderer.domElement)
   
