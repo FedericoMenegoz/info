@@ -33,7 +33,7 @@ const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 scene.add(cube, light);
 
 // 6. CSS3DObject
-const div = document.createElement('div');
+const div = document.getElementById('content');
 div.className = 'css3d-object';
 div.textContent = 'CSS3D Object';
 
@@ -46,19 +46,45 @@ function animate() {
   requestAnimationFrame(animate);
 
   // Rotate the cube and CSS3DObject
-  cube.rotation.y += 0.01;
+  //cube.rotation.y += 0.01;
 
   renderer.render(scene, camera);
   css3dRenderer.render(scene, camera);
 }
 
+scaleToContainer();
 animate();
 
 // 8. Handle Resize
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-
   renderer.setSize(window.innerWidth, window.innerHeight);
   css3dRenderer.setSize(window.innerWidth, window.innerHeight);
 });
+
+
+
+
+function scaleToContainer() {
+  // Compute the bounding box
+  cube.geometry.computeBoundingBox()
+  const boundingBox = cube.geometry.boundingBox
+  const currentDepth = boundingBox.max.z - boundingBox.min.z
+
+  // Get the size of the bounding box
+  const currentWidth = (boundingBox.max.x - boundingBox.min.x)
+  const currentHeight = (boundingBox.max.y - boundingBox.min.y)
+    
+  // css3d 
+  const prova = window.getComputedStyle(div)
+  console.log(prova)
+  const currentWidthDiv = (parseInt(prova.width))
+  const currentHeightDiv = (parseInt(prova.height))
+
+  const scaleXDiv = currentWidth / currentWidthDiv
+  const scaleYDiv = currentHeight / currentHeightDiv
+  console.log("current: ", currentWidthDiv, currentHeightDiv)
+  cssObject.scale.set(scaleXDiv, scaleYDiv, 1)
+
+}
