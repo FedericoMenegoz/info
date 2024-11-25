@@ -65,10 +65,11 @@ function scaleToContainer(container, node, paddingX, paddingY, contentDiv3d) {
   contentDiv3d.position.z = currentDepth / 2
   
   // css3d 
-
-  const prova = document.getElementById("content")
-  const currentWidthDiv = (prova.style.width)
-  const currentHeightDiv = (prova.style.height)
+  const elementDiv = document.getElementById("content")
+  const prova = window.getComputedStyle(elementDiv)
+  console.log(prova)
+  const currentWidthDiv = (parseInt(prova.width))
+  const currentHeightDiv = (parseInt(prova.height))
 
   const actualWidthDiv = CONTAINER_WIDTH - paddingX * 2
   const actualHeightDiv = CONTAINER_HEIGHT - paddingY * 2
@@ -77,6 +78,6 @@ function scaleToContainer(container, node, paddingX, paddingY, contentDiv3d) {
   const scaleYDiv = actualHeightDiv / currentHeightDiv
   console.log("current: ", currentWidthDiv, currentHeightDiv)
   console.log("current: ", actualWidthDiv, actualHeightDiv)
-  contentDiv3d.scale.set(scaleXDiv, scaleYDiv, 1)
+  contentDiv3d.scale.set(scaleXDiv * 0.15, scaleYDiv * 0.15, 1)
 
-} 
+}
