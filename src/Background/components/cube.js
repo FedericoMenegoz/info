@@ -9,12 +9,9 @@ import { createMaterial } from './material'
 import { createInfo } from '../domElements/info'
 
 function createCube() {
-  const geometry = new BoxGeometry(10, 10, 10)
+  const geometry = new BoxGeometry(100, 100, 100)
   const material = createMaterial()
   const cube = new Mesh(geometry, material)
-  const contentDiv = createInfo()
-
-  cube.add(contentDiv)
 
   // Rotation setup
   const startQuaternion = cube.quaternion.clone() // Initial orientation

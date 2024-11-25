@@ -558,8 +558,54 @@ video {
   display: none;
 }
 
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
+.visible{
+  visibility: visible;
+}
+
+.collapse{
+  visibility: collapse;
+}
+
 .fixed{
   position: fixed;
+}
+
+.absolute{
+  position: absolute;
 }
 
 .relative{
@@ -574,8 +620,8 @@ video {
   top: 0px;
 }
 
-.z-0{
-  z-index: 0;
+.z-20{
+  z-index: 20;
 }
 
 .z-30{
@@ -590,8 +636,24 @@ video {
   z-index: 50;
 }
 
+.block{
+  display: block;
+}
+
 .flex{
   display: flex;
+}
+
+.table{
+  display: table;
+}
+
+.contents{
+  display: contents;
+}
+
+.hidden{
+  display: none;
 }
 
 .h-dvh{
@@ -618,6 +680,18 @@ video {
 .w-max{
   width: -moz-max-content;
   width: max-content;
+}
+
+.border-collapse{
+  border-collapse: collapse;
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.resize{
+  resize: both;
 }
 
 .flex-col{
@@ -652,16 +726,34 @@ video {
   border-width: 2px;
 }
 
+.border{
+  border-width: 1px;
+}
+
 .border-border{
   border-color: rgba(var(--border));
 }
 
-.bg-background{
-  background-color: rgba(var(--background));
+.bg-red-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-red-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 
 .p-2{
   padding: 0.5rem;
+}
+
+.p-8{
+  padding: 2rem;
+}
+
+.p-10{
+  padding: 2.5rem;
 }
 
 .px-6{
@@ -709,8 +801,16 @@ video {
   color: rgba(var(--text-secondary));
 }
 
+.underline{
+  text-decoration-line: underline;
+}
+
 .opacity-100{
   opacity: 1;
+}
+
+.outline{
+  outline-style: solid;
 }
 
 body {

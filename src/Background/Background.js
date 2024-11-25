@@ -9,7 +9,7 @@ import { Resizer } from './systems/Resizer.js'
 import { Loop } from './systems/Loop.js'
 import { createCSS3DRender } from './systems/css3drenderer.js'
 import { createOrbitControl } from './systems/orbitControl.js'
-
+import { createInfo } from './domElements/info.js'
 import { AxesHelper } from 'three'
 
 let camera
@@ -30,17 +30,19 @@ class Background {
     orbitControls = createOrbitControl(camera, renderer.domElement)
 
     loop = new Loop(camera, scene, renderer, infoRenderer, orbitControls)
-    const cube = createCube(camera, renderer)
-
+    const cube = createCube()
+    const contentDiv = createInfo()
     const light = createLights()
+    
+    cube.add(contentDiv)
 
     // Axes
-    const axesHelper = new AxesHelper( 20 )
+    const axesHelper = new AxesHelper( 100 )
 
     scene.add(cube, light, axesHelper)
     loop.updatables.push(cube)
 
-    const resizer = new Resizer(container, camera, renderer, infoRenderer, cube)
+    const resizer = new Resizer(container, camera, renderer, infoRenderer, cube, contentDiv)
     
   }
 

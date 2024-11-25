@@ -1,14 +1,12 @@
-import { Plane, Vector3 } from 'three'
-
 class Resizer {
-  constructor(container, camera, renderer, css3dRenderer, cube) {
+  constructor(container, camera, renderer, css3dRenderer, cube, contentDiv) {
     // set the initial size
     setSize(container, camera, renderer, css3dRenderer)
-    setCubeSize(container, cube)
+    setCubeSize(container, cube, contentDiv)
 
     window.addEventListener('resize', () => {
       setSize(container, camera, renderer, css3dRenderer)
-      setCubeSize(container, camera, cube)
+      setCubeSize(container, cube, contentDiv)
     })
   }
 }
@@ -31,24 +29,25 @@ const setSize = (container, camera, renderer, css3dRenderer) => {
   renderer.setPixelRatio(window.devicePixelRatio)
 }
 
-const setCubeSize = (container, cube) => {
+const setCubeSize = (container, cube, contentDiv3d) => {
+  console.log(contentDiv3d)
+  const contentDiv = contentDiv3d.element
+  const paddingX = 24
+  const paddingY = 32
+
+  scaleToContainer(container, cube, paddingX, paddingY, contentDiv3d)
+  
+}
+
+export { Resizer }
+
+function scaleToContainer(container, node, paddingX, paddingY, contentDiv3d) {
   const CONTAINER_WIDTH = container.clientWidth
   const CONTAINER_HEIGHT = container.clientHeight
-  
-  // I dunno how content is defined booooh! TODO understanddddd
-  console.log("content:", content)
-  const paddingX = parseFloat(window.getComputedStyle(content).paddingLeft);
-  const paddingY = parseFloat(window.getComputedStyle(content).paddingBottom);
-
   // Compute the bounding box
-  cube.geometry.computeBoundingBox()
-  const boundingBox = cube.geometry.boundingBox
+  node.geometry.computeBoundingBox()
+  const boundingBox = node.geometry.boundingBox
   const currentDepth = boundingBox.max.z - boundingBox.min.z
-  const content3dElement = cube.children[0]
-  console.log("cube max z: ",cube.geometry.boundingBox.max.z)
-  console.log("cube min z: ",cube.geometry.boundingBox.min.z)
-  console.log("content3dElement", content3dElement.position.z)
-  // Adjust the size
 
   // Get the size of the bounding box
   const currentWidth = (boundingBox.max.x - boundingBox.min.x)
@@ -59,13 +58,25 @@ const setCubeSize = (container, cube) => {
 
   const scaleX = actualWitdh / currentWidth
   const scaleY = actualHeight / currentHeight
-  cube.scale.set(scaleX, scaleY, scaleX)
+  node.scale.set(scaleX, scaleY, scaleX)
+  
+  node.position.z -= actualWitdh / 2
+  
+  contentDiv3d.position.z = currentDepth / 2
+  
+  // css3d 
 
-  // Put the cube inside the borders of the content div
-  cube.position.z -= actualWitdh / 2
-  console.log("cube position (x, y, z): ", cube.position)
-  content3dElement.position.z = 0
-  //cube.material.clippingPlanes = [new Plane(new Vector3(0,0,1), -cube.position.z)]
-}
+  const prova = document.getElementById("content")
+  const currentWidthDiv = (prova.style.width)
+  const currentHeightDiv = (prova.style.height)
 
-export { Resizer }
+  const actualWidthDiv = CONTAINER_WIDTH - paddingX * 2
+  const actualHeightDiv = CONTAINER_HEIGHT - paddingY * 2
+
+  const scaleXDiv = actualWidthDiv / currentWidthDiv
+  const scaleYDiv = actualHeightDiv / currentHeightDiv
+  console.log("current: ", currentWidthDiv, currentHeightDiv)
+  console.log("current: ", actualWidthDiv, actualHeightDiv)
+  contentDiv3d.scale.set(scaleXDiv, scaleYDiv, 1)
+
+} 
