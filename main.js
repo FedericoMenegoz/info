@@ -46,7 +46,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   // Rotate the cube and CSS3DObject
-  //cube.rotation.y += 0.01;
+  cube.rotation.y += 0.01;
 
   renderer.render(scene, camera);
   css3dRenderer.render(scene, camera);
@@ -67,6 +67,7 @@ window.addEventListener('resize', () => {
 
 
 function scaleToContainer() {
+
   // Compute the bounding box
   cube.geometry.computeBoundingBox()
   const boundingBox = cube.geometry.boundingBox
@@ -86,5 +87,7 @@ function scaleToContainer() {
   const scaleYDiv = currentHeight / currentHeightDiv
   console.log("current: ", currentWidthDiv, currentHeightDiv)
   cssObject.scale.set(scaleXDiv, scaleYDiv, 1)
+
+  cube.scale.set(5,5,5)
 
 }
