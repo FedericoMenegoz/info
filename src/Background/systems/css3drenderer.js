@@ -9,6 +9,7 @@ function createCSS3DRender() {
   infoRenderer.domElement.style.pointerEvents = 'none'
   document.body.appendChild(infoRenderer.domElement)
   
+  
   return infoRenderer
 }
 

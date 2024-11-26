@@ -7,7 +7,7 @@
     <title>Federico Menegoz</title>
     <link rel="stylesheet" href="./style/output.css" />
   </head>
-  <body class="dark overflow-hidden">
+  <body class="dark bg-background overflow-hidden">
     <div class="fixed h-dvh w-6 invert-color"></div>
     <div>
       <div id="cube-container" class="fixed top-0 right-0 w-full h-dvh z-30 opacity-100">
@@ -16,14 +16,14 @@
       <!-- Fixed light/dark mode  -->
       <div class="fixed flex justify-end gap-5 w-full pr-8 pt-3 text-text-primary z-50">
         <div
-          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
+          class="w-max flex text-sm gap-2 text-text-secondary h-max items-center"
         >
-          <button id="rotate-box">
+          <button id="rotate-box" class="text-transition">
             Rotate
           </button>
         </div>
         <div
-          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
+          class="w-max flex text-sm gap-2 text-text-secondary h-max items-center"
         >
           <span class="text-transition">DARK</span>
           <button id="dark-button" onclick="toogleLightMode(this, 'dark')">
@@ -43,7 +43,7 @@
           </button>
         </div>
         <div
-          class="w-max flex text-sm gap-2 text-text-primary h-max items-center"
+          class="w-max flex text-sm gap-2 text-text-secondary h-max items-center"
         >
           <span class="text-transition">LIGHT</span>
           <button id="light-button" onclick="toogleLightMode(this, 'light')">
@@ -65,7 +65,7 @@
       </div>
       <!-- Content -->
        <div id="content"></div>
-      <!-- <div id="content" class="absolute w-full h-dvh bg-red-400 px-6 py-8 z-20">
+      <!-- <div id="content" class="absolute w-full h-dvh z-20 bg-background">
         <div
           id="content-div"
           class="relative z-40 w-full h-full border-2 border-border text-2xl flex flex-col items-start gap-2 p-2"
@@ -76,8 +76,8 @@
           <h2 class="text-text-secondary text-tomorrow text-xs font-thin">
             Full Stack Developer
           </h2>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
     </div>
   </body>
   <script>

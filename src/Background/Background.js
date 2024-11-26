@@ -30,13 +30,12 @@ class Background {
     orbitControls = createOrbitControl(camera, renderer.domElement)
 
     loop = new Loop(camera, scene, renderer, infoRenderer, orbitControls)
-    const cube = createCube()
     const contentDiv = createInfo()
+    const cube = createCube(contentDiv.element)
     const light = createLights()
     
     cube.add(contentDiv)
 
-    // Axes
     const axesHelper = new AxesHelper( 100 )
 
     scene.add(cube, light, axesHelper)
@@ -45,18 +44,11 @@ class Background {
     const resizer = new Resizer(container, camera, renderer, infoRenderer, cube, contentDiv)
     
   }
-
   start() {
     loop.start()
   }
-
   stop() {
     loop.stop()
-  }
-
-  render() {
-    // draw a single frame
-    renderer.render(scene, camera)
   }
 }
 

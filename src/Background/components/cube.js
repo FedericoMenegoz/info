@@ -2,33 +2,30 @@ import {
   BoxGeometry,
   Mesh,
   Vector3,
-  Quaternion,
-  MathUtils
+  Quaternion
 } from 'three'
 import { createMaterial } from './material'
-import { createInfo } from '../domElements/info'
 
-function createCube() {
+function createCube(contentDiv) {
   const geometry = new BoxGeometry(100, 100, 100)
   const material = createMaterial()
   const cube = new Mesh(geometry, material)
 
   // Rotation setup
-  const startQuaternion = cube.quaternion.clone() // Initial orientation
-  const axis = new Vector3(0, 1, 0) // Y-axis
-  const angle = Math.PI / 2 // 90 degrees
-  const endQuaternion = new Quaternion().setFromAxisAngle(axis, angle).multiply(startQuaternion)
+  const startQuaternion = cube.quaternion.clone() 
+  const yAxis = new Vector3(0, 1, 0) 
+  const angle = Math.PI / 2
+  const endQuaternion = new Quaternion().setFromAxisAngle(yAxis, angle).multiply(startQuaternion)
 
   // State tracking
-  let progress = 1 // Progress from 0 to 1
-  const rotationSpeed = 0.01 // Adjust rotation speed (higher = faster)
-  let direction = -1 // 1 for forward, -1 for backward
-  let previousQuaternion = cube.quaternion.clone()
+  let progress = 1
+  const rotationSpeed = 0.01 
+  let direction = -1 
 
   cube.tick = (delta) => {
     if (progress < 1) {
-      progress += delta * rotationSpeed // Increment progress based on delta
-      progress = Math.min(progress, 1) // Clamp progress to 1
+      progress += delta * rotationSpeed 
+      progress = Math.min(progress, 1) 
 
       if (direction === 1) {
         cube.quaternion.slerp(endQuaternion, progress)
@@ -36,10 +33,12 @@ function createCube() {
         cube.quaternion.slerp(startQuaternion, progress)
       }
 
-      // Calculate the cube's rotation for CSS transformation
-      const rotationY = MathUtils.radToDeg(cube.rotation.y)
-
-      previousQuaternion = cube.quaternion.clone()
+      // Hide div content when the face go on the side
+      if (cube.rotation.y > Math.PI / 4 && direction === 1 ) {
+        contentDiv.classList.add('opacity-0')
+      } else if (cube.rotation.y < Math.PI / 2.5 && direction === -1) {
+        contentDiv.classList.remove('opacity-0')
+      }
     }
   }
 

@@ -694,31 +694,12 @@ video {
   border-color: rgba(var(--border));
 }
 
-.bg-red-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
-.p-10{
-  padding: 2.5rem;
+.bg-background{
+  background-color: rgba(var(--background));
 }
 
 .p-2{
   padding: 0.5rem;
-}
-
-.p-8{
-  padding: 2rem;
-}
-
-.px-6{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .pr-8{
@@ -760,20 +741,96 @@ video {
   opacity: 1;
 }
 
+.opacity-0{
+  opacity: 0;
+}
+
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity{
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-1000{
+  transition-duration: 1000ms;
+}
+
 body {
   margin: 0;
   overflow: hidden;
 }
 
-#container {
-  width: 100vw;
-  height: 100vh;
+/* Fonts */
+
+.text-allerta {
+  font-family: "Allera Stencil", sans-serif;
 }
 
-.css3d-object {
+.text-tomorrow {
+  font-family: "Tomorrow", sans-serif;
+}
+
+/* Colors check out https://www.youtube.com/watch?v=vIBKSmWAdIA*/
+
+.light {
+  --text-primary: 34, 34, 34;
+  --text-secondary: 85, 85, 85;
+  --border: 34, 34, 34;
+  --background: 238, 238, 238;
+}
+
+.dark {
+  --text-primary: 238, 238, 238;
+  --text-secondary:  170, 170, 170;
+  --border: 238, 238, 238;
+  --background: 34, 34, 34;
+}
+
+/* Squares to toogle light mode*/
+
+.icon-selected {
+  fill: rgba(var(--text-primary));
+  stroke: rgba(var(--text-primary));
+  transition: fill;
+}
+
+.icon-not-selected {
+  fill: rgba(var(--background));
+  stroke: rgba(var(--text-primary));
+  transition: fill;
+}
+
+/* This is needed as otherwise it transition differently*/
+
+.text-transition {
+  color: var(--text-primary);
+  transition: color;
+}
+
+body *{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Util */
+
+.invert-color {
   color: white;
-  background-color: rgba(255, 0, 0, 0.8);
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
+  mix-blend-mode: difference;
+}
+
+.vertical-text {
+  transform: rotate(180deg);
+  /* Rotates the text upside down */
+  writing-mode: vertical-lr;
+  /* Sets vertical writing mode */
+  text-orientation: mixed;
+  /* Ensures characters remain upright */
 }

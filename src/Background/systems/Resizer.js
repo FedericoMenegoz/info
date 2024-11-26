@@ -30,13 +30,9 @@ const setSize = (container, camera, renderer, css3dRenderer) => {
 }
 
 const setCubeSize = (container, cube, contentDiv3d) => {
-  console.log(contentDiv3d)
-  const contentDiv = contentDiv3d.element
   const paddingX = 24
   const paddingY = 32
-
   scaleToContainer(container, cube, paddingX, paddingY, contentDiv3d)
-  
 }
 
 export { Resizer }
@@ -44,35 +40,32 @@ export { Resizer }
 function scaleToContainer(container, node, paddingX, paddingY, contentDiv3d) {
   const CONTAINER_WIDTH = container.clientWidth
   const CONTAINER_HEIGHT = container.clientHeight
-  // Compute the bounding box
+  // Compute the bounding box of the cube
   node.geometry.computeBoundingBox()
   const boundingBox = node.geometry.boundingBox
   const currentDepth = boundingBox.max.z - boundingBox.min.z
-
-  // Get the size of the bounding box
   const currentWidth = (boundingBox.max.x - boundingBox.min.x)
   const currentHeight = (boundingBox.max.y - boundingBox.min.y)
-
-  const actualWitdh = CONTAINER_WIDTH - paddingX * 2
-  const actualHeight = CONTAINER_HEIGHT - paddingY * 2
-
-  const scaleX = actualWitdh / currentWidth
-  const scaleY = actualHeight / currentHeight
-  node.scale.set(scaleX, scaleY, scaleX)
   
-  //node.position.z -= actualWitdh / 2
-  
+  // Put the infoDiv into the face of the cube
   contentDiv3d.position.z = currentDepth / 2
-  
-  // css3d 
+
+  // Fit the div into the cube face
   const elementDiv = document.getElementById("content")
   const prova = window.getComputedStyle(elementDiv)
   const currentWidthDiv = (parseInt(prova.width))
   const currentHeightDiv = (parseInt(prova.height))
 
-  const scaleXDiv = actualWitdh / currentWidthDiv
-  const scaleYDiv = actualHeight / currentHeightDiv
-  console.log("current: ", currentWidthDiv, currentHeightDiv)
+  const scaleXDiv = currentWidth / currentWidthDiv
+  const scaleYDiv = currentHeight / currentHeightDiv
   contentDiv3d.scale.set(scaleXDiv, scaleYDiv, 1)
+
+  // Fit the cube correctly in the screen
+  const actualWidth = CONTAINER_WIDTH - paddingX * 2
+  const actualHeight = CONTAINER_HEIGHT - paddingY * 2
+  const scaleX = actualWidth / currentWidth
+  const scaleY = actualHeight / currentHeight
+  node.scale.set(scaleX, scaleY, scaleX)
+  node.position.z -= actualWidth / 2
 
 }

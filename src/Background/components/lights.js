@@ -7,10 +7,10 @@ import { DirectionalLight } from "three"
 
 function createLights(color = 'white') {
 
-    const intensity = 1
+    const intensity = 0.2
     const light = new DirectionalLight(color, intensity) 
 
-    light.position.set(0, 0, 800) // light is shining from (10, 10, 10) to (0, 0, 0)
+    light.position.set(400, 0, 800) // light is shining from (400, 0, 800) to (0, 0, 0)
     
     return light
 }

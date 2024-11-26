@@ -1,28 +1,26 @@
-import { MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
-
-// const getAlphaTExture = () => {
-//   const alphaTexture = new TextureLoader().load("assets/concrete_alpha_texture.jpg")
-//   alphaTexture.wrapS = RepeatWrapping
-//   alphaTexture.wrapT = RepeatWrapping
-//   alphaTexture.repeat.set(20, 20)
-//   return alphaTexture
-// }
+import { MeshStandardMaterial } from "three";
 
 function createMaterial() {
   //const texture = getAlphaTExture()
-  let color = 0x0000FF
+  let color = 0x222222
 
   const material = new MeshStandardMaterial({
     color: color,
-    opacity: 0.5,
+    opacity: 0.3,
     transparent: true,
-    roughness: 0.3,
+    roughness: 0.9,
     metalness: 1,
     envMapIntensity: 0.9,
     clipIntersection: true
   });
 
-
+  window.addEventListener('change-color', () => {
+    if (color === 0x222222) {
+      color = 0xDDDDDD
+    } else {
+      color = 0x222222
+    }
+  })
   return material
 }
 

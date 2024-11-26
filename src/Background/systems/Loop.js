@@ -2,8 +2,6 @@ import { Clock } from "three"
 
 const clock = new Clock()
 
-
-
 class Loop {
   constructor(camera, scene, renderer, css3dRenderer, orbitControls) {
     this.camera = camera
