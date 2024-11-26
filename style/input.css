@@ -9,6 +9,15 @@ body {
   overflow: hidden;
 }
 
+#cube-container {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  width:100vw;height:auto;
+  min-height: 100vh;
+  z-index: 30;
+}
 /* Fonts */
 
 .text-allerta {
