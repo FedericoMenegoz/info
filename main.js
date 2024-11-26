@@ -7,12 +7,15 @@ const container = document.getElementById('container');
 const scene = new THREE.Scene();
 
 // 2. Camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 500);
+const PERSPECTIVE = 800
+const fov = 180 * ( 2 * Math.atan( innerHeight / 2 / PERSPECTIVE ) ) / Math.PI
+const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 0, PERSPECTIVE);
+document.body.style.perspective = `${PERSPECTIVE}px`
 
 // 3. WebGL Renderer (for 3D objects)
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+const renderer = new THREE.WebGLRenderer( { antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
 // 4. CSS3DRenderer (for DOM elements in 3D space)
@@ -57,10 +60,12 @@ animate();
 
 // 8. Handle Resize
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  
   css3dRenderer.setSize(window.innerWidth, window.innerHeight);
+  scaleToContainer()
 });
 
 
@@ -79,15 +84,22 @@ function scaleToContainer() {
     
   // css3d 
   const prova = window.getComputedStyle(div)
-  console.log(prova)
   const currentWidthDiv = (parseInt(prova.width))
   const currentHeightDiv = (parseInt(prova.height))
 
   const scaleXDiv = currentWidth / currentWidthDiv
   const scaleYDiv = currentHeight / currentHeightDiv
-  console.log("current: ", currentWidthDiv, currentHeightDiv)
   cssObject.scale.set(scaleXDiv, scaleYDiv, 1)
 
-  cube.scale.set(5,5,5)
+  const paddingY = 36
+  const paddingX = 24
+  const wantedWidth = container.clientWidth - paddingX * 2
+  const wantedHeight = container.clientHeight - paddingY * 2
+  console.log(wantedHeight, currentHeight)
+  const scaleXBox = wantedWidth / currentWidth
+  const scaleYBox =  wantedHeight / currentHeight
+  cube.position.z -= wantedWidth / 2
+
+  cube.scale.set(scaleXBox, scaleYBox, scaleXBox)
 
 }

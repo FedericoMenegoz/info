@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.css3d-object {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
