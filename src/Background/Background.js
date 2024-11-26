@@ -27,18 +27,18 @@ class Background {
     infoRenderer = createCSS3DRender()
     container.append(renderer.domElement)
 
-    orbitControls = createOrbitControl(camera, renderer.domElement)
+    //orbitControls = createOrbitControl(camera, renderer.domElement)
 
-    loop = new Loop(camera, scene, renderer, infoRenderer, orbitControls)
+    loop = new Loop(camera, scene, renderer, infoRenderer/*, orbitControls*/)
     const contentDiv = createInfo()
     const cube = createCube(contentDiv.element)
     const light = createLights()
     
     cube.add(contentDiv)
 
-    const axesHelper = new AxesHelper( 100 )
+    //const axesHelper = new AxesHelper( 100 )
 
-    scene.add(cube, light, axesHelper)
+    scene.add(cube, light/*, axesHelper*/)
     loop.updatables.push(cube)
 
     const resizer = new Resizer(container, camera, renderer, infoRenderer, cube, contentDiv)
